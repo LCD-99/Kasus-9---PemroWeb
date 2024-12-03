@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BahanBakuController;
 use App\Http\Controllers\ProdukJadiController;
+use App\Http\Controllers\SupplierController;
 
 Route::get('/admin/dashboard', [DashboardController::class, 'admin'])->middleware('auth');
 Route::get('/manager/dashboard', [DashboardController::class, 'manager'])->middleware('auth');
@@ -24,8 +25,12 @@ Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::resource('bahan_baku', BahanBakuController::class)->middleware('auth', 'role:admin');
-Route::resource('produk_jadi', ProdukJadiController::class)->middleware('auth', 'role:admin');
+Route::resource('/admin/bahan_baku', BahanBakuController::class)->middleware('auth', 'role:admin');
+Route::resource('/admin/produk_jadi', ProdukJadiController::class)->middleware('auth', 'role:admin');
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+Route::resource('suppliers', SupplierController::class);
+});
 
 Route::resource('products', ProductController::class);
 

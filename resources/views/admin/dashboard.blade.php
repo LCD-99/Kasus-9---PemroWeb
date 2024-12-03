@@ -65,6 +65,7 @@
     <h2>Admin Dashboard</h2>
     <a href="{{ route('users.index') }}">Manage Users</a>
     <a href="{{ route('bahan_baku.index') }}">Mengelola Bahan Baku</a>
+    <a href="{{ route('suppliers.index') }}">Mengelola Supplier</a>
 </div>
 
 <!-- Main Content -->
