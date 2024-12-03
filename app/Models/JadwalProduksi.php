@@ -10,11 +10,11 @@ use Illuminate\Database\Eloquent\Model;
 class JadwalProduksi extends Model
 {
     use HasFactory;
-
+    protected $table = 'jadwal_produksi';  // Pastikan nama tabel sesuai dengan yang ada di database
     protected $fillable = ['tanggal', 'produk_id', 'jumlah'];
 
     public function produk()
     {
-        return $this->belongsTo(Produk::class);
+        return $this->belongsTo(Product::class);
     }
 }

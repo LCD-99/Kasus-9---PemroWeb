@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\JadwalProduksi;
 use App\Models\AlokasiBahanBaku;
 use App\Models\BahanBaku;
+use App\Models\Product;
 use App\Models\Produk;
 use Illuminate\Http\Request;
 
@@ -20,7 +21,7 @@ class ManajerController extends Controller
 
     public function createJadwalProduksi()
     {
-        $produks = Produk::all();
+        $produks = Product::all();
         return view('manajer.jadwal_produksi.create', compact('produks'));
     }
 
@@ -33,7 +34,7 @@ class ManajerController extends Controller
     public function editJadwalProduksi($id)
     {
         $jadwal = JadwalProduksi::findOrFail($id);
-        $produks = Produk::all();
+        $produks = Product::all();
         return view('manajer.jadwal_produksi.edit', compact('jadwal', 'produks'));
     }
 
