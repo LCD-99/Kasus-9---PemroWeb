@@ -13,7 +13,7 @@ class DashboardController extends Controller
 
     public function manager()
     {
-        return view('manager.dashboard');
+        return view('manajer.dashboard');
     }
 
     public function staff()

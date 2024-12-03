@@ -8,6 +8,21 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\BahanBakuController;
 use App\Http\Controllers\ProdukJadiController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\ManajerController;
+
+Route::middleware(['auth', 'role:manager'])->prefix('manajer')->group(function () {
+    Route::get('jadwal_produksi', [ManajerController::class, 'indexJadwalProduksi'])->name('manajer.jadwal_produksi.index');
+
+    // Route untuk form tambah jadwal produksi
+    Route::get('jadwal_produksi/create', [ManajerController::class, 'createJadwalProduksi'])->name('manajer.jadwal_produksi.create');
+    
+    // Route untuk menyimpan jadwal produksi
+    Route::post('jadwal_produksi', [ManajerController::class, 'storeJadwalProduksi'])->name('manajer.jadwal_produksi.store');
+
+});
+
+
+
 
 Route::get('/admin/dashboard', [DashboardController::class, 'admin'])->middleware('auth');
 Route::get('/manager/dashboard', [DashboardController::class, 'manager'])->middleware('auth');
