@@ -1,0 +1,25 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AuthController;
+
+Route::get('/admin/dashboard', [DashboardController::class, 'admin'])->middleware('auth');
+Route::get('/manager/dashboard', [DashboardController::class, 'manager'])->middleware('auth');
+Route::get('/staff/dashboard', [DashboardController::class, 'staff'])->middleware('auth');
+
+Route::get('/admin/dashboard', [DashboardController::class, 'admin'])->name('admin.dashboard')->middleware('auth');
+Route::get('/manager/dashboard', [DashboardController::class, 'manager'])->name('manager.dashboard')->middleware('auth');
+Route::get('/staff/dashboard', [DashboardController::class, 'staff'])->name('staff.dashboard')->middleware('auth');
+
+Route::get('/admin', [DashboardController::class, 'admin'])->middleware('role:admin');
+Route::get('/manager', [DashboardController::class, 'manager'])->middleware('role:manager');
+Route::get('/staff', [DashboardController::class, 'staff'])->middleware('role:staff');
+
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('/', function () {
+    return view('welcome');
+});
