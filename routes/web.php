@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProductController;
 
 Route::get('/admin/dashboard', [DashboardController::class, 'admin'])->middleware('auth');
 Route::get('/manager/dashboard', [DashboardController::class, 'manager'])->middleware('auth');
@@ -19,6 +20,8 @@ Route::get('/staff', [DashboardController::class, 'staff'])->middleware('role:st
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::resource('products', ProductController::class);
 
 Route::get('/', function () {
     return view('welcome');
