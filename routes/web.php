@@ -11,12 +11,18 @@ use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\ManajerController;
 
 Route::middleware(['auth', 'role:manager'])->prefix('manajer')->group(function () {
-    // Route untuk mengelola jadwal produksi
-    Route::get('jadwal_produksi', [ManajerController::class, 'jadwalProduksi'])->name('manajer.jadwal_produksi.index');
+    Route::get('jadwal_produksi', [ManajerController::class, 'indexJadwalProduksi'])->name('manajer.jadwal_produksi.index');
 
-    // Route untuk mengelola alokasi bahan baku
-    Route::get('alokasi_bahan_baku', [ManajerController::class, 'alokasiBahanBaku'])->name('manajer.alokasi_bahan_baku.index');
+    // Route untuk form tambah jadwal produksi
+    Route::get('jadwal_produksi/create', [ManajerController::class, 'createJadwalProduksi'])->name('manajer.jadwal_produksi.create');
+    
+    // Route untuk menyimpan jadwal produksi
+    Route::post('jadwal_produksi', [ManajerController::class, 'storeJadwalProduksi'])->name('manajer.jadwal_produksi.store');
+
 });
+
+
+
 
 Route::get('/admin/dashboard', [DashboardController::class, 'admin'])->middleware('auth');
 Route::get('/manager/dashboard', [DashboardController::class, 'manager'])->middleware('auth');
@@ -47,4 +53,16 @@ Route::resource('users', UserController::class)->middleware('auth', 'role:admin'
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/stok-bahan', function () {
+    return view('stok-bahan');
+});
+
+Route::get('/penerimaan-bahan', function () {
+    return view('penerimaan-bahan');
+});
+
+Route::get('/pengeluaran-bahan', function () {
+    return view('pengeluaran-bahan');
 });
