@@ -24,9 +24,6 @@ Route::middleware(['auth', 'role:manager'])->prefix('manajer')->group(function (
     Route::get('alokasi_bahan_baku', [ManajerController::class, 'indexAlokasiBahanBaku'])->name('manajer.alokasi_bahan_baku.index');
 });
 
-
-
-
 Route::get('/admin/dashboard', [DashboardController::class, 'admin'])->middleware('auth');
 Route::get('/manager/dashboard', [DashboardController::class, 'manager'])->middleware('auth');
 Route::get('/staff/dashboard', [DashboardController::class, 'staff'])->middleware('auth');

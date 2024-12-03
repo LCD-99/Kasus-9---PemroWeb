@@ -3,25 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Product</title>
+    <title>Tambah Produk</title>
 </head>
 <body>
 
-<h1>Create New Product</h1>
+<h1>Tambah Produk</h1>
 
 <form action="{{ route('products.store') }}" method="POST">
     @csrf
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" required>
-    <br>
-    <label for="description">Description:</label>
-    <textarea id="description" name="description" required></textarea>
-    <br>
-    <label for="price">Price:</label>
-    <input type="number" id="price" name="price" required>
-    <br>
-    <button type="submit">Create</button>
+    <div>
+        <label for="name">Nama Produk</label>
+        <input type="text" name="name" required>
+    </div>
+    <div>
+        <label for="description">Deskripsi</label>
+        <textarea name="description" required></textarea>
+    </div>
+    <div>
+        <label for="price">Harga</label>
+        <input type="number" name="price" required>
+    </div>
+    <div>
+        <label for="stok">Stok</label>
+        <input type="number" name="stok" required>
+    </div>
+    <div>
+        <label for="status">Status</label>
+        <select name="status" required>
+            <option value="belum_diproses">Pre Order</option>
+            <option value="diproses">Diproses</option>
+            <option value="sudah_jadi">Jadi</option>
+        </select>
+    </div>
+    <button type="submit">Simpan</button>
 </form>
+
 
 </body>
 </html>

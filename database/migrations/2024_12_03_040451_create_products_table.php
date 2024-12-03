@@ -6,19 +6,27 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateProductsTable extends Migration
 {
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
     public function up()
     {
-        Schema::create('products', function (Blueprint $table) {
-            $table->id();
-            $table->string('nama_produk');
-            $table->text('deskripsi');
-            $table->decimal('harga', 15, 2);
-            $table->integer('stok');
-            $table->enum('status', ['aktif', 'tidak_aktif']);
-            $table->timestamps();
-        });
+       Schema::create('products', function (Blueprint $table) {
+        $table->id();
+        $table->string('name');
+        $table->text('description');
+        $table->decimal('price', 10, 2);
+        $table->timestamps();
+    });
     }
 
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
     public function down()
     {
         Schema::dropIfExists('products');

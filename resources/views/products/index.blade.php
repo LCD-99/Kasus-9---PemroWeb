@@ -3,40 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah Produk</title>
+    <title>Daftar Produk</title>
 </head>
 <body>
 
-<h1>Tambah Produk</h1>
+<h1>Daftar Produk</h1>
 
-<!-- Form untuk menambah produk -->
-<form action="{{ route('products.store') }}" method="POST">
-    @csrf
-    <div>
-        <label for="nama_produk">Nama Produk</label>
-        <input type="text" name="nama_produk" required>
-    </div>
-    <div>
-        <label for="deskripsi">Deskripsi</label>
-        <textarea name="deskripsi" required></textarea>
-    </div>
-    <div>
-        <label for="harga">Harga</label>
-        <input type="number" name="harga" required>
-    </div>
-    <div>
-        <label for="stok">Stok</label>
-        <input type="number" name="stok" required>
-    </div>
-    <div>
-        <label for="status">Status</label>
-        <select name="status" required>
-            <option value="aktif">Aktif</option>
-            <option value="tidak_aktif">Tidak Aktif</option>
-        </select>
-    </div>
-    <button type="submit">Simpan</button>
-</form>
+<!-- Tombol untuk menambah produk -->
+<a href="{{ route('products.create') }}">Tambah Produk</a>
+
+<!-- Menampilkan pesan jika berhasil menambahkan produk -->
+@if(session('success'))
+    <p style="color: green;">{{ session('success') }}</p>
+@endif
+
+<!-- Tabel untuk menampilkan produk -->
+<table border="1">
+    <thead>
+        <tr>
+            <th>Nama Produk</th>
+            <th>Deskripsi</th>
+            <th>Harga</th>
+            <th>Stok</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($products as $product)
+            <tr>
+                <td>{{ $product->name }}</td>
+                <td>{{ $product->description }}</td>
+                <td>{{ $product->price }}</td>
+                <td>{{ $product->stok }}</td>
+                <td>{{ ucfirst(str_replace('_', ' ', $product->status)) }}</td>
+                <td>
+                    <!-- Link untuk mengedit produk -->
+                    <a href="{{ route('products.edit', $product->id) }}">Edit</a> |
+                    <!-- Form untuk menghapus produk -->
+                    <form action="{{ route('products.destroy', $product->id) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" onclick="return confirm('Yakin ingin menghapus produk?')" style="color: red;">Hapus</button>
+                    </form>
+                </td>
+            </tr>
+        @endforeach
+    </tbody>
+</table>
 
 </body>
 </html>
