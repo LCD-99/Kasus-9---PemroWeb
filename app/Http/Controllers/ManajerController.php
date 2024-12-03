@@ -1,6 +1,6 @@
 <?php
 
-// app/Http/Controllers/ManajerController.php
+
 namespace App\Http\Controllers;
 
 use App\Models\JadwalProduksi;
