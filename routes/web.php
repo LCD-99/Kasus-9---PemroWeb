@@ -21,9 +21,6 @@ Route::middleware(['auth', 'role:manager'])->prefix('manajer')->group(function (
 
 });
 
-
-
-
 Route::get('/admin/dashboard', [DashboardController::class, 'admin'])->middleware('auth');
 Route::get('/manager/dashboard', [DashboardController::class, 'manager'])->middleware('auth');
 Route::get('/staff/dashboard', [DashboardController::class, 'staff'])->middleware('auth');

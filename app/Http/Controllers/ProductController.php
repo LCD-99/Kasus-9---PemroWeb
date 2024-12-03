@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Product;
@@ -24,11 +23,11 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_produk' => 'required|string|max:255',
-            'deskripsi' => 'required|string',
-            'harga' => 'required|numeric',
-            'stok' => 'required|integer',  // Validasi stok
-            'status' => 'required|string', // Validasi status
+            'name' => 'required|string|max:255',        // Ganti nama_produk dengan name
+            'description' => 'required|string',        // Ganti deskripsi dengan description
+            'price' => 'required|numeric',             // Ganti harga dengan price
+            'stok' => 'required|integer',              
+            'status' => 'required|string',
         ]);
     
         Product::create($request->all());
@@ -46,11 +45,11 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nama_produk' => 'required|string|max:255',
-            'deskripsi' => 'required|string',
-            'harga' => 'required|numeric',
-            'stok' => 'required|integer',  // Validasi stok
-            'status' => 'required|string', // Validasi status
+            'name' => 'required|string|max:255',        // Ganti nama_produk dengan name
+            'description' => 'required|string',        // Ganti deskripsi dengan description
+            'price' => 'required|numeric',             // Ganti harga dengan price
+            'stok' => 'required|integer',              
+            'status' => 'required|string',
         ]);
     
         $product = Product::findOrFail($id);

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -8,5 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
-    protected $fillable = ['nama_produk', 'deskripsi', 'harga', 'stok', 'status']; // Tambahkan 'stok' dan 'status'
+
+    // Menambahkan kolom yang dapat diisi (fillable)
+    protected $fillable = [
+        'name',
+        'description',
+        'price',
+        'stok',
+        'status',
+    ];
 }
