@@ -3,41 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product List</title>
+    <title>Tambah Produk</title>
 </head>
 <body>
 
-<h1>Product List</h1>
+<h1>Tambah Produk</h1>
 
-<a href="{{ route('products.create') }}">Add New Product</a>
-
-<table border="1">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($products as $product)
-        <tr>
-            <td>{{ $product->name }}</td>
-            <td>{{ $product->description }}</td>
-            <td>{{ $product->price }}</td>
-            <td>
-                <a href="{{ route('products.edit', $product->id) }}">Edit</a>
-                <form action="{{ route('products.destroy', $product->id) }}" method="POST" style="display:inline;">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit">Delete</button>
-                </form>
-            </td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
+<!-- Form untuk menambah produk -->
+<form action="{{ route('products.store') }}" method="POST">
+    @csrf
+    <div>
+        <label for="nama_produk">Nama Produk</label>
+        <input type="text" name="nama_produk" required>
+    </div>
+    <div>
+        <label for="deskripsi">Deskripsi</label>
+        <textarea name="deskripsi" required></textarea>
+    </div>
+    <div>
+        <label for="harga">Harga</label>
+        <input type="number" name="harga" required>
+    </div>
+    <div>
+        <label for="stok">Stok</label>
+        <input type="number" name="stok" required>
+    </div>
+    <div>
+        <label for="status">Status</label>
+        <select name="status" required>
+            <option value="aktif">Aktif</option>
+            <option value="tidak_aktif">Tidak Aktif</option>
+        </select>
+    </div>
+    <button type="submit">Simpan</button>
+</form>
 
 </body>
 </html>

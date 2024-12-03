@@ -28,9 +28,14 @@ class SupplierController extends Controller
             'alamat' => 'required|string',
             'kontak' => 'required|string',
         ]);
-
-        Supplier::create($request->all());
-
+    
+        // Hanya mengambil data yang diizinkan (tidak termasuk _token)
+        $data = $request->only('nama_supplier', 'alamat', 'kontak');
+    
+        // Menyimpan data ke model Supplier
+        Supplier::create($data);
+    
+        // Redirect dengan pesan sukses
         return redirect()->route('suppliers.index')->with('success', 'Supplier berhasil ditambahkan');
     }
 

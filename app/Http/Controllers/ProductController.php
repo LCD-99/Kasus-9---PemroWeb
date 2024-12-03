@@ -24,14 +24,16 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'price' => 'required|numeric',
+            'nama_produk' => 'required|string|max:255',
+            'deskripsi' => 'required|string',
+            'harga' => 'required|numeric',
+            'stok' => 'required|integer',  // Validasi stok
+            'status' => 'required|string', // Validasi status
         ]);
-
+    
         Product::create($request->all());
-
-        return redirect()->route('products.index');
+    
+        return redirect()->route('products.index')->with('success', 'Produk berhasil ditambahkan');
     }
 
     // Menampilkan form untuk mengedit produk
@@ -41,17 +43,20 @@ class ProductController extends Controller
     }
 
     // Memperbarui produk di database
-    public function update(Request $request, Product $product)
+    public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'price' => 'required|numeric',
+            'nama_produk' => 'required|string|max:255',
+            'deskripsi' => 'required|string',
+            'harga' => 'required|numeric',
+            'stok' => 'required|integer',  // Validasi stok
+            'status' => 'required|string', // Validasi status
         ]);
-
+    
+        $product = Product::findOrFail($id);
         $product->update($request->all());
-
-        return redirect()->route('products.index');
+    
+        return redirect()->route('products.index')->with('success', 'Produk berhasil diperbarui');
     }
 
     // Menghapus produk dari database
