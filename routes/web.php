@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\BahanBakuController;
+use App\Http\Controllers\ProdukJadiController;
 
 Route::get('/admin/dashboard', [DashboardController::class, 'admin'])->middleware('auth');
 Route::get('/manager/dashboard', [DashboardController::class, 'manager'])->middleware('auth');
@@ -21,7 +24,12 @@ Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+Route::resource('bahan_baku', BahanBakuController::class)->middleware('auth', 'role:admin');
+Route::resource('produk_jadi', ProdukJadiController::class)->middleware('auth', 'role:admin');
+
 Route::resource('products', ProductController::class);
+
+Route::resource('users', UserController::class)->middleware('auth', 'role:admin');
 
 Route::get('/', function () {
     return view('welcome');
