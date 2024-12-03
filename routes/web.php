@@ -11,14 +11,17 @@ use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\ManajerController;
 
 Route::middleware(['auth', 'role:manager'])->prefix('manajer')->group(function () {
+    // Route untuk mengelola jadwal produksi
     Route::get('jadwal_produksi', [ManajerController::class, 'indexJadwalProduksi'])->name('manajer.jadwal_produksi.index');
-
+    
     // Route untuk form tambah jadwal produksi
     Route::get('jadwal_produksi/create', [ManajerController::class, 'createJadwalProduksi'])->name('manajer.jadwal_produksi.create');
     
     // Route untuk menyimpan jadwal produksi
     Route::post('jadwal_produksi', [ManajerController::class, 'storeJadwalProduksi'])->name('manajer.jadwal_produksi.store');
 
+    // Route untuk mengelola alokasi bahan baku
+    Route::get('alokasi_bahan_baku', [ManajerController::class, 'indexAlokasiBahanBaku'])->name('manajer.alokasi_bahan_baku.index');
 });
 
 

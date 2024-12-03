@@ -21,8 +21,8 @@ class ManajerController extends Controller
 
     public function createJadwalProduksi()
     {
-        $produks = Product::all();
-        return view('manajer.jadwal_produksi.create', compact('produks'));
+        $products = Product::all();
+        return view('manajer.jadwal_produksi.create', compact('products'));
     }
 
     public function storeJadwalProduksi(Request $request)

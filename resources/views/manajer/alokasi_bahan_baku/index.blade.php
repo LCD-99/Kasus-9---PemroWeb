@@ -25,7 +25,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($alokasiBahanBaku as $alokasi)
+                @foreach($AlokasiBahanBaku as $alokasi)
                     <tr>
                         <td>{{ $alokasi->bahanBaku->nama }}</td>
                         <td>{{ $alokasi->jadwalProduksi->tanggal }}</td>
