@@ -39,3 +39,15 @@ Route::resource('users', UserController::class)->middleware('auth', 'role:admin'
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/stok-bahan', function () {
+    return view('stok-bahan');
+});
+
+Route::get('/penerimaan-bahan', function () {
+    return view('penerimaan-bahan');
+});
+
+Route::get('/pengeluaran-bahan', function () {
+    return view('pengeluaran-bahan');
+});
