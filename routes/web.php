@@ -8,6 +8,15 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\BahanBakuController;
 use App\Http\Controllers\ProdukJadiController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\ManajerController;
+
+Route::middleware(['auth', 'role:manager'])->prefix('manajer')->group(function () {
+    // Route untuk mengelola jadwal produksi
+    Route::get('jadwal_produksi', [ManajerController::class, 'jadwalProduksi'])->name('manajer.jadwal_produksi.index');
+
+    // Route untuk mengelola alokasi bahan baku
+    Route::get('alokasi_bahan_baku', [ManajerController::class, 'alokasiBahanBaku'])->name('manajer.alokasi_bahan_baku.index');
+});
 
 Route::get('/admin/dashboard', [DashboardController::class, 'admin'])->middleware('auth');
 Route::get('/manager/dashboard', [DashboardController::class, 'manager'])->middleware('auth');
