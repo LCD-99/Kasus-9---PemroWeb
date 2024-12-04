@@ -14,6 +14,8 @@ use App\Http\Controllers\PenerimaanBahanBakuController;
 Route::resource('penerimaan_bahan_baku', PenerimaanBahanBakuController::class);
 
 Route::middleware(['auth', 'role:manager'])->prefix('manajer')->group(function () {
+
+    Route::get('dashboard', [ManajerController::class, 'dashboard'])->name('dashboard');
     // Route untuk mengelola jadwal produksi
     Route::get('jadwal_produksi', [ManajerController::class, 'indexJadwalProduksi'])->name('manajer.jadwal_produksi.index');
     
@@ -25,6 +27,18 @@ Route::middleware(['auth', 'role:manager'])->prefix('manajer')->group(function (
 
     // Route untuk mengelola alokasi bahan baku
     Route::get('alokasi_bahan_baku', [ManajerController::class, 'indexAlokasiBahanBaku'])->name('manajer.alokasi_bahan_baku.index');
+
+    // Route untuk form edit jadwal produksi
+    Route::get('jadwal_produksi/{id}/edit', [ManajerController::class, 'editJadwalProduksi'])->name('manajer.jadwal_produksi.edit');
+
+    // Route untuk update jadwal produksi
+    Route::put('jadwal_produksi/{id}', [ManajerController::class, 'updateJadwalProduksi'])->name('manajer.jadwal_produksi.update');
+
+    // Route untuk menghapus jadwal produksi
+    Route::delete('jadwal_produksi/{id}', [ManajerController::class, 'destroyJadwalProduksi'])->name('manajer.jadwal_produksi.destroy');
+
+
+
 });
 
 Route::get('/admin/dashboard', [DashboardController::class, 'admin'])->middleware('auth');
