@@ -9,7 +9,9 @@ class AlokasiBahanBaku extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['bahan_baku_id', 'jadwal_produksi_id', 'jumlah'];
+    protected $table = 'alokasi_bahan_baku';  // Pastikan nama tabel sesuai
+
+    protected $fillable = ['bahan_baku_id', 'jadwal_produksi_id', 'jumlah_bahan_baku'];
 
     public function bahanBaku()
     {
