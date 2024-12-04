@@ -9,6 +9,9 @@ use App\Http\Controllers\BahanBakuController;
 use App\Http\Controllers\ProdukJadiController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\ManajerController;
+use App\Http\Controllers\PenerimaanBahanBakuController;
+
+Route::resource('penerimaan_bahan_baku', PenerimaanBahanBakuController::class);
 
 Route::middleware(['auth', 'role:manager'])->prefix('manajer')->group(function () {
     // Route untuk mengelola jadwal produksi
