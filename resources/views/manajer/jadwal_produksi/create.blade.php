@@ -10,28 +10,34 @@
         <h1>Tambah Jadwal Produksi</h1>
 
         <form action="{{ route('manajer.jadwal_produksi.store') }}" method="POST">
-    @csrf
-    <div>
-        <label for="tanggal">Tanggal</label>
-        <input type="date" id="tanggal" name="tanggal" required>
-    </div>
-    <div>
-        <label for="produk_id">Produk</label>
-        <select name="produk_id" id="produk_id" required>
-            @foreach($products as $produk)
-                <option value="{{ $produk->id }}">{{ $produk->nama }}</option>
-            @endforeach
-        </select>
-    </div>
-    <div>
-        <label for="jumlah">Jumlah</label>
-        <input type="number" id="jumlah" name="jumlah" required>
-    </div>
+                @csrf
+                <div>
+                    <label for="tanggal_produksi">Tanggal Produksi</label>
+                    <input type="date" name="tanggal_produksi" id="tanggal_produksi" required>
+                </div>
 
+            <div>
+                <label for="produk_id">Produk</label>
+                <select name="produk_id" id="produk_id" required>
+                <option value="">Pilih Produk</option>
+                @foreach($products as $produk)
+                    <option value="{{ $produk->id }}">{{ $produk->name }}</option>
+                @endforeach
+                </select>
+            </div>
+
+            <div>
+            <div>
+                <label for="jumlah_produksi">Jumlah Produksi</label>
+                <input type="number" name="jumlah_produksi" id="jumlah_produksi" required>
+            </div>
+
+            </div>
+            </div>
                 <br><br>
                 <button type="submit">Simpan</button>
                 <a href="{{ route('manajer.jadwal_produksi.index') }}">Kembali</a>
-            </form>
+        </form>
 
 
     </div>

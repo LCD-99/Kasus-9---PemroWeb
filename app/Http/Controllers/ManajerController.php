@@ -15,41 +15,72 @@ class ManajerController extends Controller
     // Jadwal Produksi
     public function indexJadwalProduksi()
     {
-        $jadwals = JadwalProduksi::all();
-        return view('manajer.jadwal_produksi.index', compact('jadwals'));
+    // Ambil semua jadwal produksi beserta nama produk
+    $jadwals = JadwalProduksi::with('produk')->get();
+    
+    return view('manajer.jadwal_produksi.index', compact('jadwals'));
     }
 
     public function createJadwalProduksi()
     {
-        $products = Product::all();
+        $products = Product::all(); // Mengambil semua produk
         return view('manajer.jadwal_produksi.create', compact('products'));
     }
 
     public function storeJadwalProduksi(Request $request)
     {
-        JadwalProduksi::create($request->all());
-        return redirect()->route('manajer.jadwal_produksi.index')->with('success', 'Jadwal produksi berhasil ditambahkan.');
+    // Validasi input
+    $request->validate([
+        'produk_id' => 'required|exists:products,id',
+        'tanggal_produksi' => 'required|date',
+        'jumlah_produksi' => 'required|integer',
+    ]);
+
+    // Menyimpan data ke tabel jadwal_produksi
+    JadwalProduksi::create([
+        'produk_id' => $request->produk_id,
+        'tanggal_produksi' => $request->tanggal_produksi,
+        'jumlah_produksi' => $request->jumlah_produksi,
+    ]);
+
+    // Redirect kembali dengan pesan sukses
+    return redirect()->route('manajer.jadwal_produksi.index')
+                     ->with('success', 'Jadwal Produksi berhasil disimpan');
     }
+    
+    
 
     public function editJadwalProduksi($id)
     {
         $jadwal = JadwalProduksi::findOrFail($id);
-        $produks = Product::all();
-        return view('manajer.jadwal_produksi.edit', compact('jadwal', 'produks'));
+        $products = Product::all(); // Untuk menampilkan data produk di form edit
+        return view('manajer.jadwal_produksi.edit', compact('jadwal', 'products'));
     }
 
     public function updateJadwalProduksi(Request $request, $id)
     {
+        $validated = $request->validate([
+            'produk_id' => 'required|exists:products,id',
+            'tanggal_produksi' => 'required|date',
+            'jumlah_produksi' => 'required|integer',
+        ]);
+    
         $jadwal = JadwalProduksi::findOrFail($id);
-        $jadwal->update($request->all());
-        return redirect()->route('manajer.jadwal_produksi.index')->with('success', 'Jadwal produksi berhasil diperbarui.');
+        $jadwal->update($validated);
+    
+        return redirect()->route('manajer.jadwal_produksi.index')->with('success', 'Jadwal Produksi berhasil diperbarui!');
     }
 
     public function destroyJadwalProduksi($id)
     {
-        $jadwal = JadwalProduksi::findOrFail($id);
-        $jadwal->delete();
-        return redirect()->route('manajer.jadwal_produksi.index')->with('success', 'Jadwal produksi berhasil dihapus.');
+     // Cari data jadwal berdasarkan ID
+     $jadwal = JadwalProduksi::findOrFail($id);
+    
+     // Hapus data jadwal
+     $jadwal->delete();
+     
+     // Kembali ke halaman index setelah penghapusan
+     return redirect()->route('manajer.jadwal_produksi.index')->with('success', 'Jadwal Produksi berhasil dihapus');
     }
 
     // Alokasi Bahan Baku
