@@ -18,11 +18,11 @@
     <div>
         <label for="produk_id">Produk</label>
         <select name="produk_id" id="produk_id" required>
-            @foreach($produks as $produk)
+            @foreach($products as $produk)
                 <option value="{{ $produk->id }}">{{ $produk->nama }}</option>
             @endforeach
         </select>
-    </div>x
+    </div>
     <div>
         <label for="jumlah">Jumlah</label>
         <input type="number" id="jumlah" name="jumlah" required>
