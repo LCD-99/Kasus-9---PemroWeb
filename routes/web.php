@@ -10,6 +10,17 @@ use App\Http\Controllers\ProdukJadiController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\ManajerController;
 use App\Http\Controllers\PenerimaanBahanBakuController;
+use App\Http\Controllers\PemasukanController;
+
+// Route untuk menyimpan data pemasukan
+Route::post('/pemasukan', [PemasukanController::class, 'store'])->name('pemasukan.store');
+
+// Route untuk halaman index pemasukan
+Route::get('/pemasukan', [PemasukanController::class, 'index'])->name('pemasukan.index');
+
+// Route untuk menambah pemasukan (form tambah data)
+Route::get('/pemasukan/create', [PemasukanController::class, 'create'])->name('pemasukan.create');
+
 
 Route::resource('penerimaan_bahan_baku', PenerimaanBahanBakuController::class);
 
