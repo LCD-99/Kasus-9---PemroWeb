@@ -29,4 +29,12 @@ class PenerimaanBahanBaku extends Model
     {
         return $this->belongsTo(Supplier::class);
     }
+
+    protected $table = 'penerimaan_bahan_baku'; // Pastikan nama tabelnya benar
+
+    // Relasi banyak-ke-satu (Many to One) dengan BahanBaku
+    public function bahanBaku()
+    {
+        return $this->belongsTo(BahanBaku::class, 'bahan_baku_id', 'id');
+    }
 }

@@ -22,6 +22,8 @@ class CreatePenerimaanBahanBakuTable extends Migration
             $table->decimal('harga', 10, 2);
             $table->date('tanggal_penerimaan');
             $table->timestamps();
+            $table->unsignedBigInteger('bahan_baku_id');
+            $table->foreign('bahan_baku_id')->references('id')->on('bahan_baku')->onDelete('cascade');
         });
     }
     

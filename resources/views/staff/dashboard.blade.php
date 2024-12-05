@@ -48,7 +48,7 @@
             margin-left: 250px;
             padding: 30px;
             flex-grow: 1;
-            background-color: #fff;
+            background-color: #fff; 
             overflow-y: auto;
         }
         .content h1 {
@@ -101,6 +101,7 @@
         <h2>Staff Menu</h2>
         <a href="{{ route('penerimaan_bahan_baku.index') }}">Menerima Bahan Baku</a>
         <a href="{{ route('pemasukan.index') }}">Pemasukan</a>
+        <a href="{{ route('pengeluaran_bahan_baku.index') }}">Pengeluaran Bahan Baku</a>
         <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
     </div>
 

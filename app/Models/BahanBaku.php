@@ -15,4 +15,9 @@ class BahanBaku extends Model
 
     protected $table = 'bahan_baku'; // Pastikan nama tabel sesuai
 
+    // Relasi satu-ke-banyak (One to Many) dengan PenerimaanBahanBaku
+    public function penerimaanBahanBaku()
+    {
+        return $this->hasMany(PenerimaanBahanBaku::class, 'bahan_baku_id', 'id');
+    }
 }

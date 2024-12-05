@@ -11,6 +11,25 @@ use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\ManajerController;
 use App\Http\Controllers\PenerimaanBahanBakuController;
 use App\Http\Controllers\PemasukanController;
+use App\Http\Controllers\StaffController;
+
+Route::prefix('staff')->name('staff.')->group(function () {
+    // Admin routes for managing bahan baku (CRUD)
+    Route::middleware('admin')->group(function() {
+        Route::get('bahan-baku', [StaffController::class, 'bahanBakuIndex'])->name('bahan_baku.index');
+        Route::get('bahan-baku/create', [StaffController::class, 'bahanBakuCreate'])->name('bahan_baku.create');
+        Route::post('bahan-baku/store', [StaffController::class, 'bahanBakuStore'])->name('bahan_baku.store');
+        Route::get('bahan-baku/edit/{id}', [StaffController::class, 'bahanBakuEdit'])->name('bahan_baku.edit');
+        Route::post('bahan-baku/update/{id}', [StaffController::class, 'bahanBakuUpdate'])->name('bahan_baku.update');
+        Route::get('bahan-baku/destroy/{id}', [StaffController::class, 'bahanBakuDestroy'])->name('bahan_baku.destroy');
+    });
+
+    // Staff routes for viewing bahan baku
+    Route::get('bahan-baku', [StaffController::class, 'bahanBakuIndex'])->name('bahan_baku.index');
+});
+
+Route::get('pengeluaran-bahan-baku', [PengeluaranBahanBakuController::class, 'index'])->name('pengeluaran_bahan_baku.index');
+
 
 // Route untuk menyimpan data pemasukan
 Route::post('/pemasukan', [PemasukanController::class, 'store'])->name('pemasukan.store');
@@ -20,6 +39,26 @@ Route::get('/pemasukan', [PemasukanController::class, 'index'])->name('pemasukan
 // Route untuk menambah pemasukan (form tambah data)
 Route::get('/pemasukan/create', [PemasukanController::class, 'create'])->name('pemasukan.create');
 
+// Menampilkan daftar penerimaan bahan baku
+Route::get('penerimaan-bahan-baku', [PenerimaanBahanBakuController::class, 'index'])->name('penerimaan_bahan_baku.index');
+
+// Menampilkan form untuk menambah penerimaan bahan baku
+Route::get('penerimaan-bahan-baku/create', [PenerimaanBahanBakuController::class, 'create'])->name('penerimaan_bahan_baku.create');
+
+// Menyimpan penerimaan bahan baku
+Route::post('penerimaan-bahan-baku', [PenerimaanBahanBakuController::class, 'store'])->name('penerimaan_bahan_baku.store');
+
+// Menampilkan form untuk mengedit penerimaan bahan baku
+Route::get('penerimaan-bahan-baku/{penerimaan}/edit', [PenerimaanBahanBakuController::class, 'edit'])->name('penerimaan_bahan_baku.edit');
+
+// Memperbarui data penerimaan bahan baku
+Route::put('penerimaan-bahan-baku/{penerimaan}', [PenerimaanBahanBakuController::class, 'update'])->name('penerimaan_bahan_baku.update');
+
+// Menghapus penerimaan bahan baku
+Route::delete('penerimaan-bahan-baku/{penerimaan}', [PenerimaanBahanBakuController::class, 'destroy'])->name('penerimaan_bahan_baku.destroy');
+
+
+Route::resource('penerimaan_bahan_baku.index', PenerimaanBahanBakuController::class);
 
 Route::resource('penerimaan_bahan_baku', PenerimaanBahanBakuController::class);
 
