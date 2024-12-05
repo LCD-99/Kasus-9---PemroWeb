@@ -14,7 +14,6 @@ use App\Http\Controllers\PemasukanController;
 
 // Route untuk menyimpan data pemasukan
 Route::post('/pemasukan', [PemasukanController::class, 'store'])->name('pemasukan.store');
-
 // Route untuk halaman index pemasukan
 Route::get('/pemasukan', [PemasukanController::class, 'index'])->name('pemasukan.index');
 
