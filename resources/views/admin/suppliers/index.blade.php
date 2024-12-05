@@ -10,6 +10,11 @@
 </head>
 <body>
     <div class="container mt-4">
+        <!-- Tombol Kembali ke Dashboard -->
+        <div class="text-start mb-3">
+            <a href="{{ route('admin.dashboard') }}" class="btn btn-secondary">Kembali ke Dashboard</a>
+        </div>
+
         <h1>Daftar Supplier</h1>
 
         <!-- Tombol untuk menambah supplier -->

@@ -43,11 +43,29 @@
         .btn-edit:hover {
             background-color: #31b0d5;
         }
+
+        .btn-back {
+            background-color: #f0ad4e;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn-back:hover {
+            background-color: #ec971f;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
+    <!-- Back to Dashboard Button -->
+    <div class="mb-3">
+        <a href="{{ route('admin.dashboard') }}" class="btn btn-back">Back to Dashboard</a>
+    </div>
+
     <h1 class="mb-4">User Management</h1>
 
     <!-- Add New User Button -->

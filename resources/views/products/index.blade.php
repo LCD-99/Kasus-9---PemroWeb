@@ -41,6 +41,11 @@
 <body>
 
 <div class="container">
+    <!-- Tombol Kembali ke Dashboard -->
+    <div class="text-start mb-3">
+        <a href="{{ route('admin.dashboard') }}" class="btn btn-secondary">Kembali ke Dashboard</a>
+    </div>
+
     <h1 class="mb-4 text-center">Daftar Produk</h1>
 
     <!-- Menampilkan pesan jika berhasil menambahkan produk -->
@@ -91,4 +96,9 @@
     </table>
 </div>
 
-<!-- Optional Bootstrap JS
+<!-- Optional Bootstrap JS tambahkan tombol kembali ke dashboard  -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+</body>
+</html>

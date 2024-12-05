@@ -21,11 +21,27 @@
         .btn-action {
             margin-right: 5px;
         }
+        .btn-back {
+            background-color: #f0ad4e;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .btn-back:hover {
+            background-color: #ec971f;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
+    <!-- Tombol Kembali ke Dashboard -->
+    <div class="text-start mb-3">
+        <a href="{{ route('admin.dashboard') }}" class="btn btn-back">Kembali ke Dashboard</a>
+    </div>
+
     <h1 class="mb-4 text-center">Data Bahan Baku</h1>
 
     <!-- Tombol Tambah Bahan Baku -->
