@@ -148,6 +148,7 @@
     <a href="{{ route('bahan_baku.index') }}"><i class="fa fa-cogs"></i> Mengelola Bahan Baku</a>
     <a href="{{ route('suppliers.index') }}"><i class="fa fa-industry"></i> Mengelola Supplier</a>
     <a href="{{ route('products.index') }}"><i class="fa fa-product-hunt"></i> Mengelola Product</a>
+    <a href="{{ route('admin.laporan.index') }}"><i class="fa fa-product-hunt"></i> Laporan </a>
 
     <!-- Logout Button -->
     <center><form action="{{ route('logout') }}" method="POST">

@@ -18,6 +18,10 @@ class PemasukanController extends Controller
     return view('staff.pemasukan.index', compact('pemasukan'));
 }
 
+public function create()
+    {
+        return view('pemasukan.create'); // Menampilkan form create
+    }
 public function store(Request $request)
 {
     // Validasi dan simpan data pemasukan ke database
@@ -27,11 +31,17 @@ $validated = $request->validate([
     'deskripsi' => 'required|string'
 ]);
 
+Pemasukan::create([
+    'nama_barang' => $request->nama_barang,
+    'jumlah' => $request->jumlah,
+    'deskripsi' => $request ->deskripsi,
+]);
 // Misalnya, menggunakan model Pemasukan untuk menyimpan data
 Pemasukan::create($validated);
 
 // Redirect kembali ke halaman index dengan pesan sukses
 return redirect()->route('pemasukan.index')->with('success', 'Pemasukan berhasil ditambahkan.');
 }
+
 
 }
