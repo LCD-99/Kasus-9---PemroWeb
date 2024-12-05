@@ -17,5 +17,4 @@ class JadwalProduksi extends Model
         return $this->belongsTo(Product::class, 'produk_id');
     }
     
-    
 }

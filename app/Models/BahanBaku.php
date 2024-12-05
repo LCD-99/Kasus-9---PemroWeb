@@ -20,4 +20,8 @@ class BahanBaku extends Model
     {
         return $this->hasMany(PenerimaanBahanBaku::class, 'bahan_baku_id', 'id');
     }
+    public function alokasiBahanBaku()
+    {
+        return $this->hasMany(AlokasiBahanBaku::class, 'bahan_baku_id');
+    }
 }
