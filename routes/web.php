@@ -12,6 +12,10 @@ use App\Http\Controllers\ManajerController;
 use App\Http\Controllers\PenerimaanBahanBakuController;
 use App\Http\Controllers\PemasukanController;
 use App\Http\Controllers\StaffController;
+use App\Http\Controllers\LaporanController;
+
+Route::get('/admin/laporan', [LaporanController::class, 'index'])->name('admin.laporan.index');
+
 
 Route::prefix('staff')->name('staff.')->group(function () {
     // Admin routes for managing bahan baku (CRUD)
