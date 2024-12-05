@@ -8,32 +8,98 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f6f9;
         }
+
         .container {
-            margin-top: 30px;
-            padding: 20px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 60px;
+            padding: 40px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
-        .form-group {
-            margin-bottom: 15px;
-        }
+
         .form-label {
-            font-weight: bold;
+            font-weight: 600;
+            font-size: 16px;
+            color: #495057;
         }
+
+        .form-control {
+            border-radius: 10px;
+            font-size: 14px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+        }
+
         .btn-custom {
-            padding: 10px 20px;
-            border-radius: 5px;
-        }
-        .btn-primary {
-            background-color: #007bff;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 30px;
             border: none;
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+            transition: all 0.3s ease;
         }
+
+        .btn-primary {
+            background: linear-gradient(90deg, #007bff, #0056b3);
+            color: white;
+        }
+
         .btn-primary:hover {
-            background-color: #0056b3;
+            background: linear-gradient(90deg, #0056b3, #007bff);
+            transform: translateY(-3px);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-select {
+            border-radius: 10px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            transition: all 0.3s ease;
+        }
+
+        .form-select:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+        }
+
+        .text-center {
+            margin-top: 30px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px;
+            }
+
+            .btn-custom {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+
+            .form-control, .form-select {
+                font-size: 14px;
+            }
         }
     </style>
 </head>
@@ -81,6 +147,10 @@
         </div>
     </form>
 </div>
+
+<!-- Link JS (Bootstrap JS dan Popper.js) -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 
 </body>
 </html>
