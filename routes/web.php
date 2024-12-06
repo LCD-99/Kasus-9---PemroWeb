@@ -56,6 +56,8 @@ Route::resource('penerimaan_bahan_baku.index', PenerimaanBahanBakuController::cl
 
 Route::resource('penerimaan_bahan_baku', PenerimaanBahanBakuController::class);
 
+
+
 Route::middleware(['auth', 'role:manager'])->prefix('manajer')->group(function () {
 
 Route::get('dashboard', [ManajerController::class, 'dashboard'])->name('dashboard');
@@ -64,15 +66,22 @@ Route::get('jadwal_produksi', [ManajerController::class, 'indexJadwalProduksi'])
     // Route untuk form tambah jadwal produksi
 Route::get('jadwal_produksi/create', [ManajerController::class, 'createJadwalProduksi'])->name('manajer.jadwal_produksi.create');
     // Route untuk menyimpan jadwal produksi
-Route::post('jadwal_produksi', [ManajerController::class, 'storeJadwalProduksi'])->name('manajer.jadwal_produksi.store');
+    Route::post('jadwal_produksi', [ManajerController::class, 'storeJadwalProduksi'])->name('manajer.jadwal_produksi.store');
+
     // Route untuk mengelola alokasi bahan baku
-Route::get('alokasi_bahan_baku', [ManajerController::class, 'indexAlokasiBahanBaku'])->name('manajer.alokasi_bahan_baku.index');
+    Route::get('alokasi_bahan_baku', [ManajerController::class, 'indexAlokasiBahanBaku'])->name('manajer.alokasi_bahan_baku.index');
+
     // Route untuk form edit jadwal produksi
-Route::get('jadwal_produksi/{id}/edit', [ManajerController::class, 'editJadwalProduksi'])->name('manajer.jadwal_produksi.edit');
+    Route::get('jadwal_produksi/{id}/edit', [ManajerController::class, 'editJadwalProduksi'])->name('manajer.jadwal_produksi.edit');
+
     // Route untuk update jadwal produksi
-Route::put('jadwal_produksi/{id}', [ManajerController::class, 'updateJadwalProduksi'])->name('manajer.jadwal_produksi.update');
+    Route::put('jadwal_produksi/{id}', [ManajerController::class, 'updateJadwalProduksi'])->name('manajer.jadwal_produksi.update');
+
     // Route untuk menghapus jadwal produksi
-Route::delete('jadwal_produksi/{id}', [ManajerController::class, 'destroyJadwalProduksi'])->name('manajer.jadwal_produksi.destroy');
+    Route::delete('jadwal_produksi/{id}', [ManajerController::class, 'destroyJadwalProduksi'])->name('manajer.jadwal_produksi.destroy');
+
+
+
 });
 
 Route::get('/admin/dashboard', [DashboardController::class, 'admin'])->middleware('auth');

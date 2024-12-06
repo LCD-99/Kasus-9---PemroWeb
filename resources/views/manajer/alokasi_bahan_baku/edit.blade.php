@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah Alokasi Bahan Baku</title>
+    <title>Edit Alokasi Bahan Baku</title>
     <style>
         /* Reset default styles */
         body, h1, form, select, input, button {
@@ -13,13 +13,13 @@
         }
 
         body {
-            background-color: #f3f4f6;
+            background-color: #f3f4f6; /* Background soft light gray */
             color: #333;
             padding: 20px;
         }
 
         h1 {
-            color: #5e6c6d;  /* Soft greenish-gray */
+            color: #5e6c6d; /* Soft greenish-gray */
             text-align: center;
             margin-bottom: 20px;
             font-size: 2em;
@@ -32,7 +32,7 @@
             padding: 20px;
             background-color: white;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Light shadow effect */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow effect */
         }
 
         .form-group {
@@ -64,68 +64,55 @@
             background-color: #28a745; /* Green color */
             border: none;
             border-radius: 5px;
-            font-size: 1.1em;
             cursor: pointer;
         }
 
         .form-group button:hover {
-            background-color: #218838; /* Darker green for hover */
+            background-color: #218838; /* Darker green when hovering */
         }
 
-        .form-group a {
+        .btn-secondary {
             padding: 12px 20px;
+            color: #fff;
+            background-color: #6c757d; /* Gray color */
+            border: none;
+            border-radius: 5px;
             text-decoration: none;
-            color: #333;
-            background-color: #6c757d;  /* Gray color */
-            border-radius: 5px;
-            font-size: 1.1em;
+            display: inline-block;
         }
 
-        .form-group a:hover {
-            background-color: #5a6268; /* Darker gray for hover */
+        .btn-secondary:hover {
+            background-color: #5a6268; /* Darker gray on hover */
         }
-
-        /* Style untuk alert atau notifikasi */
-        .alert {
-            padding: 10px;
-            margin-bottom: 20px;
-            background-color: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-            border-radius: 5px;
-        }
-
     </style>
 </head>
 <body>
-
     <div class="container">
-        <h1>Tambah Alokasi Bahan Baku</h1>
+        <h1>Edit Alokasi Bahan Baku</h1>
 
-        <!-- Menampilkan notifikasi jika ada sukses/tambah data -->
-        @if(session('success'))
-            <div class="alert">
-                {{ session('success') }}
-            </div>
-        @endif
-
-        <!-- Form tambah alokasi bahan baku -->
-        <form action="{{ route('manajer.alokasi_bahan_baku.store') }}" method="POST">
+        <form action="{{ route('manajer.alokasi_bahan_baku.update', $alokasi->id) }}" method="POST">
             @csrf
+            @method('PUT')
+
             <div class="form-group">
                 <label for="produk_id">Produk</label>
-                <select name="produk_id" id="produk_id">
-                    <option value="">Pilih Produk</option>
+                <select name="produk_id" id="produk_id" class="form-control">
+                    <!-- Pastikan kita menggunakan nilai yang ada di objek alokasi -->
+                    <option value="{{ $alokasi->jadwalProduksi->produk_id }}" selected>
+                        {{ $alokasi->jadwalProduksi->produk->name }}
+                    </option>
                     @foreach ($jadwals as $jadwal)
-                        <option value="{{ $jadwal->id }}">{{ $jadwal->produk->name }} - {{ $jadwal->tanggal_produksi }}</option>
+                        <option value="{{ $jadwal->produk->id }}">{{ $jadwal->produk->name }} - {{ $jadwal->tanggal_produksi }}</option>
                     @endforeach
                 </select>
             </div>
 
             <div class="form-group">
                 <label for="bahan_baku_id">Bahan Baku</label>
-                <select name="bahan_baku_id" id="bahan_baku_id">
-                    <option value="">Pilih Bahan Baku</option>
+                <select name="bahan_baku_id" id="bahan_baku_id" class="form-control">
+                    <option value="{{ $alokasi->bahanBaku->id }}" selected>
+                        {{ $alokasi->bahanBaku->nama_bahan }}
+                    </option>
                     @foreach ($bahanBakus as $bahanBaku)
                         <option value="{{ $bahanBaku->id }}">{{ $bahanBaku->nama_bahan }}</option>
                     @endforeach
@@ -134,17 +121,14 @@
 
             <div class="form-group">
                 <label for="jumlah_bahan_baku">Jumlah Bahan Baku</label>
-                <input type="number" name="jumlah_bahan_baku" id="jumlah_bahan_baku" min="1" required>
+                <input type="number" name="jumlah_bahan_baku" id="jumlah_bahan_baku" class="form-control" value="{{ old('jumlah_bahan_baku', $alokasi->jumlah_bahan_baku) }}">
             </div>
 
             <div class="form-group">
-                <button type="submit">Simpan</button>
-                <a href="{{ route('manajer.alokasi_bahan_baku.index') }}">Kembali</a>
+                <button type="submit" class="btn btn-primary">Update</button>
+                <a href="{{ route('manajer.alokasi_bahan_baku.index') }}" class="btn btn-secondary">Kembali</a>
             </div>
         </form>
-
-
-        </div>
-
+    </div>
 </body>
 </html>
